@@ -20,10 +20,10 @@ orientation: horizontal
   :::
 
 #title
-Build your docs with Nuxt UI Pro
+Build your docs with Nuxt UI Prosasas
 
 #description
-Nuxt UI Pro is a collection of premium components built on top of Nuxt UI to create beautiful & responsive applications in minutes.
+Nuxt UI Pro is a collection of premium components built on top of Nuxt UI to create beautiful & responsive applications in minutes.dadad
 
 #links
   :::u-button
