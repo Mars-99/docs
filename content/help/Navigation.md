@@ -1,5 +1,0 @@
----
-title: help
----
-
-# Navigation page
