@@ -231,6 +231,9 @@ This template integrates with Nuxt Studio, providing a visual interface for edit
 ::
 
 
+# Root page
+
+
 # Markdown Syntax
 
 ## Titles

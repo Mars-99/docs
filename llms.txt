@@ -11,6 +11,7 @@
 - [Introduction](https://docs-template.nuxt.dev/getting-started): Welcome to Nuxt UI Pro documentation template.
 - [Installation](https://docs-template.nuxt.dev/getting-started/installation): Get started with Nuxt UI Pro documentation template.
 - [Usage](https://docs-template.nuxt.dev/getting-started/usage): Learn how to write and customize your documentation.
+- [aaaa](https://docs-template.nuxt.dev/getting-started/test): aaa
 
 ## Essentials
 
