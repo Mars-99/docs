@@ -18,7 +18,7 @@ export default defineAppConfig({
   },
   header: {
     title: 'EarData',
-    to: '/',
+    to: 'https://v2.ear-data.com/',
     logo: {
       alt: '',
       light: '',
