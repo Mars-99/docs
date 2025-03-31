@@ -17,7 +17,7 @@ export default defineAppConfig({
     siteName: 'Nuxt UI Pro - Docs template'
   },
   header: {
-    title: 'Ear-data',
+    title: 'EarData',
     to: '/',
     logo: {
       alt: '',
