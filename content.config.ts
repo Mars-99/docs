@@ -1,25 +1,137 @@
-import { defineContentConfig, defineCollection, z } from '@nuxt/content'
+import { defineCollection, z } from '@nuxt/content'
 
-export default defineContentConfig({
-  collections: {
-    landing: defineCollection({
-      type: 'page',
-      source: 'index.md'
-    }),
-    docs: defineCollection({
-      type: 'page',
-      source: {
-        include: '**',
-        exclude: ['index.md']
-      },
-      schema: z.object({
-        links: z.array(z.object({
-          label: z.string(),
-          icon: z.string(),
-          to: z.string(),
-          target: z.string().optional()
-        })).optional()
+const variantEnum = z.enum(['solid', 'outline', 'subtle', 'soft', 'ghost', 'link'])
+const colorEnum = z.enum(['primary', 'secondary', 'neutral', 'error', 'warning', 'success', 'info'])
+const sizeEnum = z.enum(['xs', 'sm', 'md', 'lg', 'xl'])
+const orientationEnum = z.enum(['vertical', 'horizontal'])
+
+const baseSchema = {
+  title: z.string().nonempty(),
+  description: z.string().nonempty()
+}
+
+const linkSchema = z.object({
+  label: z.string().nonempty(),
+  to: z.string().nonempty(),
+  icon: z.string().optional(),
+  size: sizeEnum.optional(),
+  trailing: z.boolean().optional(),
+  target: z.string().optional(),
+  color: colorEnum.optional(),
+  variant: variantEnum.optional()
+})
+
+const imageSchema = z.object({
+  src: z.string().nonempty(),
+  alt: z.string().optional(),
+  loading: z.string().optional(),
+  srcset: z.string().optional()
+})
+
+const featureItemSchema = z.object({
+  ...baseSchema,
+  icon: z.string().nonempty()
+})
+
+const collapsibleItemSchema = z.object({
+  ...baseSchema,
+  label: z.string().nonempty(),
+  icon: z.string().nonempty(),
+  content: z.string().nonempty()
+})
+
+const sectionSchema = z.object({
+  headline: z.string().optional(),
+  ...baseSchema,
+  features: z.array(featureItemSchema)
+})
+
+const sectionWithLinksSchema = sectionSchema.extend({
+  links: z.array(linkSchema)
+})
+
+export const collections = {
+  docs: defineCollection({
+    type: 'page',
+    source: '1.docs/**/*',
+    schema: z.object({
+      title: z.string().nonempty(),
+      description: z.string().nonempty()
+    })
+  }),
+  posts: defineCollection({
+    type: 'page',
+    source: '3.blog/**/*',
+    schema: z.object({
+      title: z.string().nonempty(),
+      description: z.string().nonempty(),
+      image: z.object({ src: z.string().nonempty() }),
+      authors: z.array(
+        z.object({
+          name: z.string().nonempty(),
+          to: z.string().nonempty(),
+          avatar: z.object({ src: z.string().nonempty() })
+        })
+      ),
+      date: z.string().nonempty(),
+      badge: z.object({ label: z.string().nonempty() })
+    })
+  }),
+  content: defineCollection({
+    source: 'index.yml',
+    type: 'data',
+    schema: z.object({
+      ...baseSchema,
+      hero: sectionWithLinksSchema,
+      features: sectionSchema.extend({
+        items: z.array(featureItemSchema)
+      }),
+      faq: sectionSchema.extend({
+        items: z.array(collapsibleItemSchema)
+      }),
+    })
+  }),
+  pricing: defineCollection({
+    source: '2.pricing.yml',
+    type: 'data',
+    schema: sectionSchema.extend({
+      hero: z.object({
+        title: z.string().nonempty(),
+        description: z.string().nonempty()
+      }),
+      plans: z.array(
+        z.object({
+          title: z.string().nonempty(),
+          description: z.string().nonempty(),
+          price: z.object({
+            month: z.string().nonempty(),
+            year: z.string().nonempty()
+          }),
+          billing_period: z.string().nonempty(),
+          billing_cycle: z.string().nonempty(),
+          button: linkSchema,
+          features: z.array(z.string().nonempty()),
+          highlight: z.boolean().optional()
+        })
+      ),
+      logos: z.object({
+        title: z.string().nonempty(),
+        icons: z.array(z.string())
+      }),
+      faq: sectionSchema.extend({
+        items: z.array(
+          z.object({
+            label: z.string().nonempty(),
+            content: z.string().nonempty(),
+            defaultOpen: z.boolean().optional()
+          })
+        )
       })
     })
-  }
-})
+  }),
+  blog: defineCollection({
+    source: '3.blog.yml',
+    type: 'data',
+    schema: sectionSchema
+  }),
+}

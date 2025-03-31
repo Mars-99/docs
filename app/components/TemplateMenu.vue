@@ -4,19 +4,19 @@
     :modal="false"
     :items="[{
       label: `Starter`,
-      to: 'https://ui-pro-starter.nuxt.dev/'
+      to: 'https://starter-template.nuxt.dev/'
     }, {
       label: `Landing`,
       to: 'https://landing-template.nuxt.dev/'
     }, {
       label: `Docs`,
-      to: 'https://docs-template.nuxt.dev/',
+      to: 'https://docs-template.nuxt.dev/'
+    }, {
+      label: `SaaS`,
+      to: 'https://saas-template.nuxt.dev/',
       color: 'primary',
       checked: true,
       type: 'checkbox'
-    }, {
-      label: `SaaS`,
-      to: 'https://saas-template.nuxt.dev/'
     }, {
       label: `Dashboard`,
       to: 'https://dashboard-template.nuxt.dev/'
@@ -25,12 +25,12 @@
     size="xs"
   >
     <UButton
-      label="Docs"
+      label="SaaS"
       variant="subtle"
       trailing-icon="i-lucide-chevron-down"
       size="xs"
       class="-mb-[6px] font-semibold rounded-full truncate"
-      :class="[open && 'bg-(--ui-primary)/15']"
+      :class="[open && 'bg-[var(--ui-primary)]/15']"
       :ui="{
         trailingIcon: ['transition-transform duration-200', open ? 'rotate-180' : undefined].filter(Boolean).join(' ')
       }"

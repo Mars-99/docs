@@ -5,24 +5,18 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/ui-pro',
     '@nuxt/content',
-    'nuxt-og-image',
-    'nuxt-llms'
+    '@vueuse/nuxt',
+    'nuxt-og-image'
   ],
 
   devtools: {
-    enabled: true
+    enabled: false
   },
 
   css: ['~/assets/css/main.css'],
 
-  content: {
-    build: {
-      markdown: {
-        toc: {
-          searchDepth: 1
-        }
-      }
-    }
+  routeRules: {
+    '/docs': { redirect: '/docs/getting-started', prerender: false }
   },
 
   future: {
@@ -47,35 +41,5 @@ export default defineNuxtConfig({
         braceStyle: '1tbs'
       }
     }
-  },
-
-  icon: {
-    provider: 'iconify'
-  },
-
-  llms: {
-    domain: 'https://docs-template.nuxt.dev/',
-    title: 'Nuxt UI Pro - Docs template',
-    description: 'A template for building documentation with Nuxt UI Pro and Nuxt Content',
-    full: {
-      title: 'Nuxt UI Pro - Docs template Full Documentation',
-      description: 'This is the full documentation for the Nuxt UI Pro - Docs template'
-    },
-    sections: [
-      {
-        title: 'Getting Started',
-        contentCollection: 'docs',
-        contentFilters: [
-          { field: 'path', operator: 'LIKE', value: '/getting-started%' }
-        ]
-      },
-      {
-        title: 'Essentials',
-        contentCollection: 'docs',
-        contentFilters: [
-          { field: 'path', operator: 'LIKE', value: '/essentials%' }
-        ]
-      }
-    ]
   }
 })

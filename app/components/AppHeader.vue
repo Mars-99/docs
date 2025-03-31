@@ -1,79 +1,72 @@
 <script setup lang="ts">
-import type { ContentNavigationItem } from '@nuxt/content'
+const route = useRoute()
 
-const navigation = inject<Ref<ContentNavigationItem[]>>('navigation')
-
-const { header } = useAppConfig()
+const items = computed(() => [{
+  label: 'Docs',
+  to: '/docs',
+  active: route.path.startsWith('/docs')
+}, {
+  label: 'Pricing',
+  to: '/pricing'
+}, {
+  label: 'Blog',
+  to: '/blog'
+}])
 </script>
 
 <template>
-  <UHeader
-    :ui="{ center: 'flex-1' }"
-    :to="header?.to || '/'"
-  >
-    <UContentSearchButton
-      v-if="header?.search"
-      label="Search..."
-      variant="outline"
-      class="w-full"
-    >
-      <template #trailing>
-        <div class="flex items-center gap-0.5 ms-auto">
-          <UKbd value="meta" />
-          <UKbd value="k" />
-        </div>
-      </template>
-    </UContentSearchButton>
-
-    <template
-      v-if="header?.logo?.dark || header?.logo?.light || header?.title"
-      #title
-    >
-      <UColorModeImage
-        v-if="header?.logo?.dark || header?.logo?.light"
-        :light="header?.logo?.light!"
-        :dark="header?.logo?.dark!"
-        :alt="header?.logo?.alt"
-        class="h-6 w-auto shrink-0"
-      />
-
-      <span v-else-if="header?.title">
-        {{ header.title }}
-      </span>
-    </template>
-
-    <template
-      v-else
-      #left
-    >
-      <NuxtLink :to="header?.to || '/'">
+  <UHeader>
+    <template #left>
+      <NuxtLink to="/">
         <LogoPro class="w-auto h-6 shrink-0" />
       </NuxtLink>
-
       <TemplateMenu />
     </template>
 
+    <UNavigationMenu
+      :items="items"
+      variant="link"
+    />
+
     <template #right>
-      <UContentSearchButton
-        v-if="header?.search"
-        class="lg:hidden"
+      <UColorModeButton />
+      <UButton
+        label="Sign in"
+        color="neutral"
+        variant="ghost"
+        to="/login"
       />
-
-      <UColorModeButton v-if="header?.colorMode" />
-
-      <template v-if="header?.links">
-        <UButton
-          v-for="(link, index) of header.links"
-          :key="index"
-          v-bind="{ color: 'neutral', variant: 'ghost', ...link }"
-        />
-      </template>
+      <UButton
+        label="Sign up"
+        color="neutral"
+        trailing-icon="i-lucide-arrow-right"
+        class="hidden lg:flex"
+        to="/signup"
+      />
     </template>
 
     <template #body>
-      <UContentNavigation
-        highlight
-        :navigation="navigation"
+      <UNavigationMenu
+        :items="items"
+        orientation="vertical"
+        class="-mx-2.5"
+      />
+
+      <USeparator class="my-6" />
+
+      <UButton
+        label="Sign in"
+        color="neutral"
+        variant="subtle"
+        to="/login"
+        block
+        class="mb-3"
+      />
+      <UButton
+        label="Sign up"
+        color="neutral"
+        to="/signup"
+        block
       />
     </template>
   </UHeader>

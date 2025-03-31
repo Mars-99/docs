@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-ui-pro-template-docs",
+  "name": "nuxt-ui-pro-template-saas",
   "private": true,
   "type": "module",
   "scripts": {
@@ -14,13 +14,14 @@
   "dependencies": {
     "@iconify-json/lucide": "^1.2.32",
     "@iconify-json/simple-icons": "^1.2.29",
-    "@iconify-json/vscode-icons": "^1.2.16",
     "@nuxt/content": "^3.4.0",
     "@nuxt/image": "^1.10.0",
     "@nuxt/ui-pro": "^3.0.1",
+    "@standard-schema/spec": "^1.0.0",
+    "@vueuse/nuxt": "^13.0.0",
     "nuxt": "^3.16.1",
-    "nuxt-llms": "0.1.0",
-    "nuxt-og-image": "^5.0.5"
+    "nuxt-og-image": "^5.0.5",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.2.0",
