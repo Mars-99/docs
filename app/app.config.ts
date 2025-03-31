@@ -28,7 +28,7 @@ export default defineAppConfig({
     colorMode: '',
     links: [{
       label: '帮助',
-      to: '/',
+      to: 'https://mars-99-docs.nuxt.space/help/?preview=07357342113e3debe0f447e36566eaf7',
       target: '_blank',
       'aria-label': 'aaa'
     }, {
