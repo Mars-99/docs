@@ -9,43 +9,11 @@ seo:
 ---
 orientation: horizontal
 ---
-  :::prose-pre
-  ---
-  code: npx nuxi init -t github:nuxt-ui-pro/docs
-  filename: Terminal
-  ---
-  ```bash
-  npx nuxi init -t github:nuxt-ui-pro/docs
-  ```
-  :::
-
 #title
 Build your docs with Nuxt UI Prosasas
 
 #description
 Nuxt UI Pro is a collection of premium components built on top of Nuxt UI to create beautiful & responsive applications in minutes.dadad
-
-#links
-  :::u-button
-  ---
-  size: xl
-  to: /getting-started
-  trailing-icon: i-lucide-arrow-right
-  ---
-  Get started
-  :::
-
-  :::u-button
-  ---
-  color: neutral
-  icon: i-simple-icons-github
-  size: xl
-  target: _blank
-  to: https://github.com/nuxt-ui-pro/docs
-  variant: subtle
-  ---
-  Use this template
-  :::
 ::
 
 ::u-page-section
@@ -142,28 +110,5 @@ All-in-one documentation template
   
   #description
   A full-text search modal powered by Fuse.js.
-  :::
-::
-
-::u-page-section
-  :::u-page-c-t-a
-  ---
-  links:
-    - label: Buy now
-      to: https://ui.nuxt.com/pro/purchase
-      target: _blank
-      icon: i-lucide-shopping-cart
-      color: neutral
-    - label: License
-      to: https://ui.nuxt.com/getting-started/license
-      trailingIcon: i-lucide-circle-help
-      target: _blank
-      color: neutral
-      variant: subtle
-  description: Nuxt UI Pro is free in development, but you need a license to use
-    it in production.
-  title: Start with Nuxt UI Pro today!
-  variant: subtle
-  ---
   :::
 ::
